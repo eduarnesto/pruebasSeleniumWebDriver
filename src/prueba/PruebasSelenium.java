@@ -21,7 +21,7 @@ class PruebasSelenium {
 	}
 
 	@Test
-	void test() {
+	void test1() {
 		driver1.get("https://elenarivero.github.io/ejercicio1/index.html");
 		WebElement direccionBox = driver1.findElement(By.id("direccion"));        
         WebElement cpBox = driver1.findElement(By.id("cp"));
@@ -43,6 +43,24 @@ class PruebasSelenium {
         
 	}
 
+	@Test
+	void test2() {
+		driver1.get("https://elenarivero.github.io/ejercicio1/index.html");
+		WebElement direccionBox = driver1.findElement(By.id("direccion"));        
+        WebElement cpBox = driver1.findElement(By.id("cp"));
+        
+        direccionBox.sendKeys("Calle inventada");
+        cpBox.sendKeys("12345");
+        
+        
+        WebElement submitButton = driver1.findElement(By.id("enviar"));
+        submitButton.click();
+        
+        WebElement direccionCorrecta = driver1.findElement(By.id("cabecera"));
+        String textoDireccion = direccionCorrecta.getText();
+        assertEquals("Dirección correcta", textoDireccion);
+        
+	}
 	/*
 	@AfterAll
 	static void exitDriver() {
